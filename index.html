@@ -1,90 +1,388 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vale Sky Lagoon – Feliz Navidad</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f2f0ed;
-      padding: 20px;
-      color: #333;
-      text-align: center;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.12);
-    }
-    .hero {
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 16px 0 24px;
-    }
-    .hero img {
-      width: 100%;
-      display: block;
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 20px;
-      color: #8b5b3c;
-    }
-    p {
-      font-size: 17px;
-      line-height: 1.5;
-      margin: 8px 0;
-    }
-    .steps {
-      text-align: left;
-      margin-top: 16px;
-      font-size: 16px;
-    }
-    ol {
-      padding-left: 18px;
-    }
-    .footer {
-      margin-top: 22px;
-      font-style: italic;
-    }
+
+```
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Copos de nieve animados */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(50px);
+    opacity: 0.3;
+  }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1.5em;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.snowflake:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 2s; }
+.snowflake:nth-child(3) { left: 30%; animation-duration: 12s; animation-delay: 4s; }
+.snowflake:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 1s; }
+.snowflake:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; }
+.snowflake:nth-child(6) { left: 60%; animation-duration: 10s; animation-delay: 5s; }
+.snowflake:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; }
+.snowflake:nth-child(8) { left: 80%; animation-duration: 9s; animation-delay: 6s; }
+.snowflake:nth-child(9) { left: 90%; animation-duration: 11s; animation-delay: 1s; }
+
+.card {
+  max-width: 750px;
+  width: 100%;
+  background: linear-gradient(to bottom, #ffffff 0%, #fdfbf7 100%);
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+              0 0 0 8px rgba(184, 134, 11, 0.2),
+              0 0 0 12px rgba(139, 0, 0, 0.1);
+  position: relative;
+  border: 3px solid #d4af37;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Decoración navideña en las esquinas */
+.card::before,
+.card::after {
+  content: '🎄';
+  position: absolute;
+  font-size: 2.5em;
+  opacity: 0.3;
+}
+
+.card::before {
+  top: 10px;
+  left: 10px;
+}
+
+.card::after {
+  top: 10px;
+  right: 10px;
+}
+
+.christmas-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.ornament-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.ornament-line span {
+  display: inline-block;
+  animation: swing 2s ease-in-out infinite;
+}
+
+.ornament-line span:nth-child(2) { animation-delay: 0.2s; }
+.ornament-line span:nth-child(3) { animation-delay: 0.4s; }
+
+h1 {
+  font-size: 42px;
+  color: #8b0000;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  color: #2d5a3d;
+  font-weight: normal;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+.hero {
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 30px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 4px solid #d4af37;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.hero:hover img {
+  transform: scale(1.05);
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 19px;
+  line-height: 1.7;
+  margin: 25px 0;
+  color: #444;
+  padding: 20px;
+  background: rgba(45, 90, 61, 0.05);
+  border-radius: 15px;
+  border-left: 5px solid #d4af37;
+}
+
+.ritual-section {
+  margin: 30px 0;
+  background: linear-gradient(to right, rgba(139, 0, 0, 0.03), rgba(45, 90, 61, 0.03));
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px dashed #d4af37;
+}
+
+.ritual-title {
+  text-align: center;
+  font-size: 26px;
+  color: #8b0000;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.steps {
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+ol {
+  padding-left: 25px;
+  counter-reset: step-counter;
+  list-style: none;
+}
+
+ol li {
+  counter-increment: step-counter;
+  margin: 15px 0;
+  padding-left: 15px;
+  position: relative;
+}
+
+ol li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: -35px;
+  background: linear-gradient(135deg, #8b0000, #b22222);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gift-box {
+  text-align: center;
+  margin: 35px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #fff5e6 0%, #ffe4e1 100%);
+  border-radius: 20px;
+  border: 3px solid #d4af37;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gift-icon {
+  font-size: 4em;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.gift-text {
+  font-size: 20px;
+  color: #8b0000;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.footer {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  padding: 25px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 15px;
+  border-top: 3px solid #d4af37;
+}
+
+.footer-heart {
+  color: #e74c3c;
+  font-size: 1.2em;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+}
+
+.plane {
+  display: inline-block;
+  animation: fly 3s ease-in-out infinite;
+}
+
+@keyframes fly {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(10px) rotate(-5deg); }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 25px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  .intro-text {
+    font-size: 17px;
+  }
+}
+```
+
   </style>
 </head>
 <body>
+  <!-- Copos de nieve -->
+  <div class="snowflake">❄</div>
+  <div class="snowflake">❅</div>
+  <div class="snowflake">❆</div>
+  <div class="snowflake">❄</div>
+  <div class="snowflake">❅</div>
+  <div class="snowflake">❆</div>
+  <div class="snowflake">❄</div>
+  <div class="snowflake">❅</div>
+  <div class="snowflake">❆</div>
+
   <div class="card">
-    <h1>🎄 Feliz Navidad 🎁</h1>
-    <h2>Vale regalo: Sky Lagoon – Ritual de los 7 pasos</h2>
-
-    <div class="hero">
-      <img src="https://images.ctfassets.net/4cd45et68cgf/4WoGbr9qpi1diYSJvSPC8d/93c7e8cbb1a0f5e4c657e769cf4bc0fe/Skylagoon_2021__29_.jpg?w=1200&q=80&fm=jpg" alt="Sky Lagoon Islandia">
+    <div class="christmas-header">
+      <div class="ornament-line">
+        <span>🔴</span>
+        <span>🟡</span>
+        <span>🔴</span>
+      </div>
+      <h1>🎄 ¡Feliz Navidad! 🎄</h1>
+      <h2>Vale Regalo Especial</h2>
     </div>
 
-    <p>Este vale es tu entrada para vivir juntas la experiencia de <strong>Sky Lagoon</strong> en Islandia, con el famoso
-    <strong>Ritual de los 7 pasos</strong>.</p>
+```
+<div class="gift-box">
+  <div class="gift-icon">🎁</div>
+  <div class="gift-text">Sky Lagoon – Ritual de los 7 Pasos</div>
+</div>
 
-    <div class="steps">
-      <ol>
-        <li>Relajarte en la laguna geotérmica</li>
-        <li>Baño frío para despertar el cuerpo</li>
-        <li>Sauna con vistas al océano</li>
-        <li>Ducha fría energizante</li>
-        <li>Mascarilla corporal geotérmica</li>
-        <li>Baño de vapor profundo</li>
-        <li>Ducha caliente final y relax</li>
-      </ol>
-    </div>
+<div class="hero">
+  <img src="https://images.ctfassets.net/4cd45et68cgf/4WoGbr9qpi1diYSJvSPC8d/93c7e8cbb1a0f5e4c657e769cf4bc0fe/Skylagoon_2021__29_.jpg?w=1200&q=80&fm=jpg" alt="Sky Lagoon Islandia">
+</div>
 
-    <p class="footer">
-      Hecho con mucho amor ❤️<br>
-      Nuestra sorpresa de Navidad para Islandia ✈️
-    </p>
+<div class="intro-text">
+  Este vale es tu entrada para vivir juntos la experiencia mágica de <strong>Sky Lagoon</strong> en Islandia, 
+  disfrutando del legendario <strong>Ritual de los 7 Pasos</strong>, una tradición islandesa de bienestar 
+  y relajación con vistas espectaculares al océano.
+</div>
+
+<div class="ritual-section">
+  <div class="ritual-title">✨ El Ritual de los 7 Pasos ✨</div>
+  <div class="steps">
+    <ol>
+      <li><strong>Laguna geotérmica</strong> – Sumérgete en aguas cálidas con vistas panorámicas al Atlántico Norte</li>
+      <li><strong>Baño frío</strong> – Despierta tu cuerpo y activa la circulación con un refrescante chapuzón</li>
+      <li><strong>Sauna con vistas</strong> – Relájate mientras contemplas el océano infinito</li>
+      <li><strong>Ducha fría energizante</strong> – Revitaliza tu piel y renueva tu energía</li>
+      <li><strong>Mascarilla corporal</strong> – Nutre tu piel con minerales geotérmicos únicos de Islandia</li>
+      <li><strong>Baño de vapor</strong> – Purifica cuerpo y mente en una atmósfera de calma profunda</li>
+      <li><strong>Ducha caliente final</strong> – Completa el ciclo con una sensación de paz absoluta</li>
+    </ol>
+  </div>
+</div>
+
+<div class="footer">
+  <p style="font-size: 20px; margin-bottom: 10px;">
+    Hecho con mucho amor <span class="footer-heart">❤️</span>
+  </p>
+  <p style="font-size: 18px; color: #2d5a3d;">
+    Nuestra sorpresa de Navidad para la aventura islandesa <span class="plane">✈️</span>
+  </p>
+  <p style="margin-top: 15px; font-size: 16px; font-style: italic; color: #8b0000;">
+    ¡Que disfrutes cada momento de esta experiencia inolvidable! 🌟
+  </p>
+</div>
+```
+
   </div>
 </body>
 </html>
